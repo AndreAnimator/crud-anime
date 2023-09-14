@@ -19,9 +19,9 @@ export class FirebaseService {
     return this.angularFirestore.collection(this.PATH).add({nome: anime.nome, 
       episodios: anime.episodios, 
       genero: anime.genero,
-      temporada: anime.temporada,
-      studio: anime.studio,
-      data: anime.data});
+      temporada: anime.temporada || null,
+      studio: anime.studio || null,
+      data: anime.data || null});
   }
 
   editarAnime(anime: Anime, id: string){
@@ -30,9 +30,9 @@ export class FirebaseService {
       nome: anime.nome,
       episodios: anime.episodios,
       genero: anime.genero,
-      temporada: anime.temporada,
-      studio: anime.studio,
-      data: anime.data
+      temporada: anime.temporada || null,
+      studio: anime.studio || null,
+      data: anime.data || null
     })
   }
 
