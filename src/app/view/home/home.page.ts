@@ -9,29 +9,28 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  lista_animes: Anime[] = [];
+  lista_animes: any[] = [];
 
-  constructor(private router : Router,
-   private firebaseService: FirebaseService) {
+  constructor(private router : Router, private firebaseService: FirebaseService) {
     this.firebaseService.buscarTodos()
     .subscribe(res => {
       this.lista_animes = res.map(anime => {
         return{
           id: anime.payload.doc.id,
-          ...anime.payload.doc.data()as any
+          ...anime.payload.doc.data() as any
         }as Anime;
       })
     })
 
   }
 
-  irParaCadastrarPage(){
+  irParaCadastrar(){
     this.router.navigate(['/cadastrar']);
   }
 
   editar(anime: Anime){
-    this.router.navigateByUrl("/editar",
-    {state: {anime:anime}});
+    console.log("OOOOOOOI");
+    this.router.navigateByUrl("/detalhar", {state: {anime:anime}});
   }
 
 }

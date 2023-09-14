@@ -16,8 +16,7 @@ export class FirebaseService {
   }
 
   cadastrar(anime : Anime){
-    return this.angularFirestore.collection(this.PATH)
-    .add({nome: anime.nome, episodios: anime.episodios, genero: anime.genero});
+    return this.angularFirestore.collection(this.PATH).add({nome: anime.nome, episodios: anime.episodios, genero: anime.genero});
   }
 
   editarAnime(anime: Anime, id: string){

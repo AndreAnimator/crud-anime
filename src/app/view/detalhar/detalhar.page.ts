@@ -9,7 +9,7 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   templateUrl: './detalhar.page.html',
   styleUrls: ['./detalhar.page.scss'],
 })
-export class EditarPage implements OnInit {
+export class DetalharPage implements OnInit {
   nome!: string;
   episodios! : number;
   genero! : number;
@@ -59,19 +59,18 @@ export class EditarPage implements OnInit {
     await alert.present();
   }
 
-  habilitar(){
-    if(!this.edicao){
-      this.edicao = true;
-    }else{
+  habilitarEdicao(){
+    if(this.edicao)
       this.edicao = false;
-    }
+    else
+      this.edicao = true;
   }
 
   excluir(){
     this.presentAlert("Atenção!", "Realmente deseja excluir?");
   }
 
-  salvar(){
+  editar(){
     //validações de inputs
     let novo : Anime = new Anime(this.nome, this.episodios, this.genero);
     novo.temporada = this.temporada;

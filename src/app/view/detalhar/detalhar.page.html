@@ -21,15 +21,15 @@
         <ion-select-option value="2">Romance</ion-select-option>
         <ion-select-option value="3">Drama</ion-select-option>
       </ion-select>
-      <ion-item>
-        <ion-input label="Temporada" placeholder="Insira a temporada de lançamento do anime" [(ngModel)]="temporada" disabled="{{edicao}}"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Studio" placeholder="Insira o estúdio que produziu o anime" [(ngModel)]="studio" disabled="{{edicao}}"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Data" placeholder="Insira a data que lançou o anime" type="date" [(ngModel)]="data" disabled="{{edicao}}"></ion-input>
-      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Temporada" placeholder="Insira a temporada de lançamento do anime" [(ngModel)]="temporada" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Studio" placeholder="Insira o estúdio que produziu o anime" [(ngModel)]="studio" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Data" placeholder="Insira a data que lançou o anime" type="date" [(ngModel)]="data" disabled="{{edicao}}"></ion-input>
     </ion-item>
     <ion-button expand="block" shape="round" (click)="editar()" disabled="{{edicao}}">Salvar</ion-button>
     <ion-button expand="block" shape="round" color="danger" (click)="excluir()" disabled="{{edicao}}">Excluir</ion-button>
