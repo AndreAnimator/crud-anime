@@ -10,18 +10,17 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   styleUrls: ['./detalhar.page.scss'],
 })
 export class DetalharPage implements OnInit {
+  anime!: Anime;
   nome!: string;
   episodios! : number;
   genero! : number;
-  temporada! : string;
+  temporada! : number;
   studio! : string;
   data! : number;
   indice! : string;
-  anime!: any;
   edicao: boolean = true;
 
-  constructor(private alertController: AlertController, private router : Router,
-    private firebaseService: FirebaseService) {}
+  constructor(private alertController: AlertController, private router : Router, private firebaseService: FirebaseService) {}
 
   ngOnInit() {
     this.anime = history.state.anime;
@@ -49,7 +48,7 @@ export class DetalharPage implements OnInit {
         {
           text: 'Sim',
           handler: () => {
-            this.firebaseService.excluirAnime(this.anime.id);
+            this.firebaseService.excluirAnime(this.anime);
             this.router.navigate(['/home']);
             console.log('Whatever');
           }

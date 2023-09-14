@@ -13,7 +13,7 @@ export class CadastrarPage implements OnInit {
   nome!: string;
   episodios! : number;
   genero! : number;
-  temporada! : string;
+  temporada! : number;
   studio! : string;
   data! : number;
 

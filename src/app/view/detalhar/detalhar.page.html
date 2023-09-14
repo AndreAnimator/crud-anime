@@ -17,13 +17,20 @@
     </ion-item>
     <ion-item>
       <ion-select label="Genero" placeholder="Seleciona o gênero do anime" [(ngModel)]="genero" disabled="{{edicao}}">
+        <ion-select-option value="0">Outro</ion-select-option>
         <ion-select-option value="1">Shounen</ion-select-option>
         <ion-select-option value="2">Romance</ion-select-option>
         <ion-select-option value="3">Drama</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-input label="Temporada" placeholder="Insira a temporada de lançamento do anime" [(ngModel)]="temporada" disabled="{{edicao}}"></ion-input>
+      <ion-select label="Temporada" placeholder="Insira a tempoorada do anime" [(ngModel)]="temporada" disabled="{{edicao}}">
+        <ion-select-option value="0">Ano todo</ion-select-option>
+        <ion-select-option value="1">Verão</ion-select-option>
+        <ion-select-option value="2">Outono</ion-select-option>
+        <ion-select-option value="3">Inverno</ion-select-option>
+        <ion-select-option value="4">Primavera</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-input label="Studio" placeholder="Insira o estúdio que produziu o anime" [(ngModel)]="studio" disabled="{{edicao}}"></ion-input>

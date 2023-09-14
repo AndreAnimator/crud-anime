@@ -3,7 +3,7 @@ export class Anime {
     private _nome!: string;
     private _episodios!: number;
     private _genero!: number;
-    private _temporada!: string;
+    private _temporada!: number;
     private _studio!: string;
     private _data!: number;
 
@@ -41,10 +41,10 @@ export class Anime {
         this._genero = value;
     }
 
-    public get temporada(): string {
+    public get temporada(): number {
         return this._temporada;
     }
-    public set temporada(value: string) {
+    public set temporada(value: number) {
         this._temporada = value;
     }
 
