@@ -35,7 +35,10 @@ export class CadastrarPage implements OnInit {
   cadastrar(){
     if(!this.nome || !this.episodios || !this.genero){
       this.presentAlert("Erro", "Os campos nome, episódios e genero são obrigatórios.");
-    }else{
+    }else if(this.episodios < 0){
+      this.presentAlert("Erro", "O campo episódios não pode ser negativo.");   
+    }
+    else{
       this.presentAlert("Sucesso", "Anime Cadastrado!");
       console.log("cadstrou eh");
       let novo : Anime = new Anime(this.nome, this.episodios, this.genero);

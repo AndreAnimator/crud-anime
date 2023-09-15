@@ -7,13 +7,16 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="lista_animes.length === 0">
+    <p>Vetor vazio</p>
+  </ng-container>
   <ion-list *ngFor="let anime of lista_animes;">
     <ion-item (click)="editar(anime)">
       <ion-label>{{anime.nome}}</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button (click)="irParaCadastrar()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

@@ -13,7 +13,7 @@
       <ion-input label="Nome" placeholder="Insira o nome do anime" [(ngModel)]="nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="Episodios" placeholder="Insira a quantidade de episódios do anime" type="number" [(ngModel)]="episodios"></ion-input>
+      <ion-input label="Episodios" placeholder="Insira a quantidade de episódios do anime" type="number" min="1" [(ngModel)]="episodios"></ion-input>
     </ion-item>
     <ion-item>
       <ion-select label="Genero" placeholder="Seleciona o gênero do anime" [(ngModel)]="genero">
