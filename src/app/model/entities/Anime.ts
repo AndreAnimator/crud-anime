@@ -6,6 +6,7 @@ export class Anime {
     private _temporada!: number;
     private _studio!: string;
     private _data!: number;
+    private _downloadURL!: any;
 
     constructor(nome: string, episodios: number, genero: number){
         this._nome = nome;
@@ -60,5 +61,12 @@ export class Anime {
     }
     public set data(value: number) {
         this._data = value;
+    }
+
+    public get downloadURL(): any {
+        return this._downloadURL;
+    }
+    public set downloadURL(value: any) {
+        this._downloadURL = value;
     }
 }

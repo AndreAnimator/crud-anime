@@ -41,6 +41,14 @@
     <ion-item>
       <ion-input label="Data" placeholder="Insira a data que lançou o anime" type="date" [(ngModel)]="data" disabled="{{edicao}}"></ion-input>
     </ion-item>
+    <ion-item *ngIf="anime.downloadURL != null">
+      <img src="{{anime.downloadURL}}" />
+    </ion-item>
+    <ion-item>
+      <ion-button size="default" color="success" shape="round" disabled="{{edicao}}">
+        <input type="file" (change)="cadastrarImagem($event.target)" />
+      </ion-button>
+    </ion-item>
     <ion-button expand="block" shape="round" (click)="editar()" disabled="{{edicao}}">Salvar</ion-button>
     <ion-button expand="block" shape="round" color="danger" (click)="excluir()" disabled="{{edicao}}">Excluir</ion-button>
   </ion-list>

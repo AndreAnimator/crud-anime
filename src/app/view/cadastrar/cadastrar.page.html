@@ -38,6 +38,11 @@
     <ion-item>
       <ion-input label="Data" placeholder="Insira a data que lançou o anime" type="date" [(ngModel)]="data"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-button size="default" color="success" shape="round">
+        <input type="file" (change)="cadastrarImagem($event.target)" />
+      </ion-button>
+    </ion-item>
     <ion-button expand="block" (click)="cadastrar()">Enviar</ion-button>
   </ion-list>
 </ion-content>

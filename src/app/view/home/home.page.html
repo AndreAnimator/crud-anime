@@ -12,6 +12,12 @@
   </ng-container>
   <ion-list *ngFor="let anime of lista_animes;">
     <ion-item (click)="editar(anime)">
+      <ion-thumbnail slot="start" *ngIf="anime.downloadURL != null">
+        <img alt="Silhouette of mountains" src="{{anime.downloadURL}}" />
+      </ion-thumbnail>
+      <ion-thumbnail slot="start" *ngIf="anime.downloadURL == null">
+        <img alt="Silhouette of mountains" src="assets/notfound.jpg" />
+      </ion-thumbnail>
       <ion-label>{{anime.nome}}</ion-label>
     </ion-item>
   </ion-list>

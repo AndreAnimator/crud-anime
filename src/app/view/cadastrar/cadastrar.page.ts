@@ -16,6 +16,7 @@ export class CadastrarPage implements OnInit {
   temporada! : number;
   studio! : string;
   data! : number;
+  public imagem! : any;
 
   constructor(private alertController: AlertController, private router : Router, private firebaseService : FirebaseService) { }
 
@@ -32,6 +33,10 @@ export class CadastrarPage implements OnInit {
   ngOnInit() {
   }
 
+  cadastrarImagem(imagem: any){
+    this.imagem = imagem;
+  }
+
   cadastrar(){
     if(!this.nome || !this.episodios || !this.genero){
       this.presentAlert("Erro", "Os campos nome, episódios e genero são obrigatórios.");
@@ -42,11 +47,15 @@ export class CadastrarPage implements OnInit {
       this.presentAlert("Sucesso", "Anime Cadastrado!");
       console.log("cadstrou eh");
       let novo : Anime = new Anime(this.nome, this.episodios, this.genero);
-      console.log(novo);
-      novo.temporada = this.temporada;
-      novo.studio = this.studio;
-      novo.data = this.data;
-      this.firebaseService.cadastrar(novo);
+      if(this.imagem){
+        this.firebaseService.cadastrarCapa(this.imagem, novo);
+      }else{
+        console.log(novo);
+        novo.temporada = this.temporada;
+        novo.studio = this.studio;
+        novo.data = this.data;
+        this.firebaseService.cadastrar(novo);
+      }
       this.router.navigate(['/home']);
     }
   }
