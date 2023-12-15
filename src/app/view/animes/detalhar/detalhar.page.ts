@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Anime } from 'src/app/model/entities/Anime';
+import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
@@ -20,8 +21,11 @@ export class DetalharPage implements OnInit {
   indice! : string;
   edicao: boolean = true;
   public imagem: any;
+  user : any;
 
-  constructor(private alertController: AlertController, private router : Router, private firebaseService: FirebaseService) {}
+  constructor(private alertController: AlertController, private router : Router, private firebaseService: FirebaseService, private auth: AuthService) {
+    this.user = this.auth.getUserLogged();
+  }
 
   ngOnInit() {
     this.anime = history.state.anime;
@@ -105,10 +109,12 @@ export class DetalharPage implements OnInit {
     else{
       let novo : Anime = new Anime(this.nome, this.episodios, this.genero);
       novo.id = this.anime.id;
+      novo.uid = this.user.uid;
       novo.temporada = this.temporada;
       novo.studio = this.studio;
       novo.data = this.data;
       if(this.imagem){
+        
         this.firebaseService.cadastrarCapa(this.imagem, novo);
       }else{
         this.firebaseService.editarAnime(novo, this.anime.id);

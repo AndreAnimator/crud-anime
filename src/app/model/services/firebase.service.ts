@@ -13,8 +13,8 @@ export class FirebaseService {
 
   constructor(private angularFirestore: AngularFirestore, private storage : AngularFireStorage) { }
 
-  buscarTodos(){
-    return this.angularFirestore.collection(this.PATH).snapshotChanges();
+  buscarTodos(uid: String){
+    return this.angularFirestore.collection(this.PATH, ref => ref.where('uid', '==', uid)).snapshotChanges();
   }
 
   cadastrar(anime : Anime){
@@ -23,7 +23,8 @@ export class FirebaseService {
       genero: anime.genero,
       temporada: anime.temporada || null,
       studio: anime.studio || null,
-      data: anime.data || null});
+      data: anime.data || null, 
+      uid: anime.uid});
   }
 
   cadastrarComCapa(anime : Anime){
@@ -33,7 +34,8 @@ export class FirebaseService {
       temporada: anime.temporada || null,
       studio: anime.studio || null,
       data: anime.data || null,
-      downloadURL: anime.downloadURL || null});
+      downloadURL: anime.downloadURL || null, 
+      uid: anime.uid});
   }
 
   editarAnime(anime: Anime, id: string){
@@ -44,7 +46,8 @@ export class FirebaseService {
       genero: anime.genero,
       temporada: anime.temporada || null,
       studio: anime.studio || null,
-      data: anime.data || null
+      data: anime.data || null, 
+      uid: anime.uid
     })
   }
   
@@ -57,7 +60,8 @@ export class FirebaseService {
       temporada: anime.temporada || null,
       studio: anime.studio || null,
       data: anime.data || null,
-      downloadURL: anime.downloadURL || null
+      downloadURL: anime.downloadURL || null, 
+      uid: anime.uid
     })
   }
 
@@ -68,7 +72,9 @@ export class FirebaseService {
   }
 
   cadastrarCapa(imagem: any, anime: Anime){
+    console.log("Imagem.itme não eh uma funcao???")
     const file = imagem.item(0);
+    console.log("Não chegou aqui");
     if(file.type.split('/')[0] != 'image'){
       console.error('Tipo não Suporrtado!');
       return;

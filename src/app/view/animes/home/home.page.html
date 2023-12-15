@@ -8,15 +8,15 @@
 
 <ion-content>
   <ng-container *ngIf="lista_animes.length === 0">
-    <p>Vetor vazio</p>
+    <p>Lista vazia</p>
   </ng-container>
   <ion-list *ngFor="let anime of lista_animes;">
     <ion-item (click)="editar(anime)">
       <ion-thumbnail slot="start" *ngIf="anime.downloadURL != null">
-        <img alt="Silhouette of mountains" src="{{anime.downloadURL}}" />
+        <img alt="Poster of {{anime.nome}}" src="{{anime.downloadURL}}" />
       </ion-thumbnail>
       <ion-thumbnail slot="start" *ngIf="anime.downloadURL == null">
-        <img alt="Silhouette of mountains" src="assets/notfound.jpg" />
+        <img alt="Poster not found" src="assets/notfound.jpg" />
       </ion-thumbnail>
       <ion-label>{{anime.nome}}</ion-label>
     </ion-item>
@@ -26,5 +26,6 @@
     <ion-fab-button (click)="irParaCadastrar()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
+    <ion-button (click)="logout()">Sair</ion-button>
   </ion-fab>
 </ion-content>
