@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseService } from './firebase.service';
 import { Router } from '@angular/router';
-import { getAuth, signInWithPopup, browserPopupRedirectResolver, GoogleAuthProvider} from 'firebase/auth';
+import { getAuth, signInWithPopup, browserPopupRedirectResolver, GoogleAuthProvider, GithubAuthProvider} from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,12 @@ export class AuthService {
 
   public signInWithGoogle(){
     const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    return signInWithPopup(auth, provider, browserPopupRedirectResolver);
+  }
+
+  public signInWithGithub(){
+    const provider = new GithubAuthProvider();
     const auth = getAuth();
     return signInWithPopup(auth, provider, browserPopupRedirectResolver);
   }

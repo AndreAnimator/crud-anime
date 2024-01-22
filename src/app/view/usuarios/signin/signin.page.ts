@@ -28,7 +28,6 @@ export class SigninPage implements OnInit {
       this.utilService.presentAlert("Erro", "Erro ao preencher os campos!");
       return false;
     }else{
-      this.utilService.simpleLoader();
       this.logar();
       return true;
     }
@@ -50,6 +49,17 @@ export class SigninPage implements OnInit {
 
   logarComGoogle(): void{
     this.authService.signInWithGoogle().then((res)=>{
+      this.utilService.presentAlert("Olá", "Seja bem vindo!");
+      this.router.navigate(["home"]);
+    })
+    .catch((error)=>{
+      this.utilService.presentAlert("Login", "Erro ao logar");
+      console.log(error.message);
+    })
+  }
+
+  logarComGithub(): void{
+    this.authService.signInWithGithub().then((res)=>{
       this.utilService.presentAlert("Olá", "Seja bem vindo!");
       this.router.navigate(["home"]);
     })
