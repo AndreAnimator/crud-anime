@@ -64,6 +64,7 @@ export class CadastrarPage implements OnInit {
       }
     } 
     else{
+      this.utilService.simpleLoader();
       console.log("cadstrou eh");
       let novo : Anime = new Anime(this.formEntidade.value['nome'], this.formEntidade.value['episodios'], this.formEntidade.value['genero']);
       novo.uid = this.user.uid;
@@ -78,6 +79,7 @@ export class CadastrarPage implements OnInit {
       }else{
         this.firebaseService.cadastrar(novo);
       }
+      this.utilService.dismissLoader();
       this.utilService.presentAlert("Sucesso", "Anime Cadastrado!");
       this.router.navigate(['/home']);
     }

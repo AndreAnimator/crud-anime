@@ -28,6 +28,7 @@ export class SigninPage implements OnInit {
       this.utilService.presentAlert("Erro", "Erro ao preencher os campos!");
       return false;
     }else{
+      this.utilService.simpleLoader();
       this.logar();
       return true;
     }
