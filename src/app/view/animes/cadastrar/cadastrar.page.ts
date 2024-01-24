@@ -57,7 +57,7 @@ export class CadastrarPage implements OnInit {
   cadastrar(){
     if(!this.formEntidade.valid){
       //this.nome || !this.episodios || !this.genero
-      if(this.formEntidade.value['episodios'] < 0){
+      if(this.formEntidade.value['episodios'] <= 0){
         this.utilService.presentAlert("Erro", "O campo episódios não pode ser negativo.");   
       }else{
         this.utilService.presentAlert("Erro", "Os campos nome, episódios e genero são obrigatórios.");
