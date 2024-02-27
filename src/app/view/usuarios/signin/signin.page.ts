@@ -37,9 +37,11 @@ export class SigninPage implements OnInit {
   private logar(){
     this.authService.signIn(this.formLogar.value['email'], this.formLogar.value['senha'])
     .then((res)=>{
-      this.utilService.dismissLoader();
-      this.utilService.presentAlert("Olá", "Seja bem vindo!");
-      this.router.navigate(["home"]); 
+      //setTimeout(() => {
+        this.utilService.dismissLoader();
+        this.utilService.presentAlert("Olá", "Seja bem vindo!");
+        this.router.navigate(["home"]);
+      //}, 500);
     })
     .catch((error)=>{
       this.utilService.dismissLoader();
@@ -50,8 +52,10 @@ export class SigninPage implements OnInit {
 
   logarComGoogle(): void{
     this.authService.signInWithGoogle().then((res)=>{
-      this.utilService.presentAlert("Olá", "Seja bem vindo!");
-      this.router.navigate(["home"]);
+      setTimeout(() => {
+        this.utilService.presentAlert("Olá", "Seja bem vindo!");
+        this.router.navigate(["home"]);
+      }, 500);
     })
     .catch((error)=>{
       this.utilService.presentAlert("Login", "Erro ao logar");
@@ -61,8 +65,10 @@ export class SigninPage implements OnInit {
 
   logarComGithub(): void{
     this.authService.signInWithGithub().then((res)=>{
-      this.utilService.presentAlert("Olá", "Seja bem vindo!");
-      this.router.navigate(["home"]);
+      setTimeout(() => {
+        this.utilService.presentAlert("Olá", "Seja bem vindo!");
+        this.router.navigate(["home"]);
+      }, 500);
     })
     .catch((error)=>{
       this.utilService.presentAlert("Login", "Erro ao logar");

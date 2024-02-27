@@ -74,12 +74,21 @@ export class CadastrarPage implements OnInit {
       if(this.imagem){
         console.log(this.imagem);
         console.log("Ola tou cadastrando com imagem");
-        this.firebaseService.cadastrarCapa(this.imagem, novo);
+        this.firebaseService.cadastrarCapa(this.imagem, novo).then(() => {
+          this.utilService.dismissLoader();
+        })
+        .catch(error => {
+          console.error(error);
+        });
         console.log("Terminei de cadastrar com imagem");
       }else{
-        this.firebaseService.cadastrar(novo);
+        this.firebaseService.cadastrar(novo).then(() => {
+          this.utilService.dismissLoader();
+        })
+        .catch(error => {
+          console.error(error);
+        });
       }
-      this.utilService.dismissLoader();
       this.utilService.presentAlert("Sucesso", "Anime Cadastrado!");
       this.router.navigate(['/home']);
     }

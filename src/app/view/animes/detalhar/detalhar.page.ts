@@ -85,7 +85,6 @@ export class DetalharPage implements OnInit {
       }
     }
     else{
-      this.utilService.simpleLoader();
       let novo : Anime = new Anime(this.formEntidade.value['nome'], this.formEntidade.value['episodios'], this.formEntidade.value['genero']);
       novo.id = this.anime.id;
       novo.uid = this.user.uid;
@@ -99,7 +98,6 @@ export class DetalharPage implements OnInit {
         this.firebaseService.editarAnime(novo, this.anime.id);
       }
       this.utilService.presentAlert("Sucesso", "Anime Editado!");
-      this.utilService.dismissLoader();
       this.router.navigate(['/home']);
     }
   }

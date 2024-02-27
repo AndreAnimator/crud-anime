@@ -72,26 +72,33 @@ export class FirebaseService {
   }
 
   cadastrarCapa(imagem: any, anime: Anime){
-    console.log("Imagem.itme não eh uma funcao???")
-    const file = imagem.item(0);
-    console.log("Não chegou aqui");
-    if(file.type.split('/')[0] != 'image'){
-      console.error('Tipo não Suporrtado!');
-      return;
-    }
-    const path = `images/${anime.nome}_${file.name}`;
-    const fileRef = this.storage.ref(path);
-    let task = this.storage.upload(path, file);
-    task.snapshotChanges().pipe(finalize(()=>{
-      let uploadFileURL = fileRef.getDownloadURL();
-      uploadFileURL.subscribe(resp => {
-        anime.downloadURL = resp;
-        if(!anime.id){
-          this.cadastrarComCapa(anime);
-        }else{
-          this.editarComCapa(anime, anime.id);
+    return new Promise((resolve, reject) => {
+      console.log("Imagem.itme não eh uma funcao???")
+      const file = imagem.item(0);
+      console.log("Não chegou aqui");
+      if(file.type.split('/')[0] != 'image'){
+        console.error('Tipo não Suporrtado!');
+        return;
+      }
+      const path = `images/${anime.nome}_${file.name}`;
+      const fileRef = this.storage.ref(path);
+      let task = this.storage.upload(path, file);
+      task.snapshotChanges().pipe(finalize(()=>{
+        let uploadFileURL = fileRef.getDownloadURL();
+        uploadFileURL.subscribe(resp => {
+          anime.downloadURL = resp;
+          if(!anime.id){
+            this.cadastrarComCapa(anime);
+          }else{
+            this.editarComCapa(anime, anime.id);
+          }
+          resolve(resp);
+        },
+        error => {
+          reject(error); 
         }
-      })
-    })).subscribe();
+        );
+      })).subscribe();
+    });
   }
 }	

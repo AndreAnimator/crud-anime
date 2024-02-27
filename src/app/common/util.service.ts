@@ -48,7 +48,6 @@ export class UtilService {
   }
 
   async simpleLoader(){
-    await this.loadingController.dismiss();
     this.loadingController.create({
       message: 'Carregando'
     }).then((response) => {
@@ -57,10 +56,10 @@ export class UtilService {
   }
 
   async dismissLoader(){
-    while (await this.loadingController.getTop()) {
-      this.loadingController.dismiss().then((response) => {
-        console.log('Loader Fechado', response);
-      });
-    }
+    this.loadingController.dismiss().then((response) => {
+      console.log('Loader Fechado', response);
+    }).catch((error) => {
+      console.error('Error dismissing loader:', error);
+    });
   }
 }
