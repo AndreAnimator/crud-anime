@@ -11,9 +11,19 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
 })
 export class HomePage {
   lista_animes: any[] = [];
+  animes: any[] = [];
   public user: any;
+  isLoading: boolean = false;
+  hasSearched: boolean = false;
+  query: any;
+  model: any = {
+    icon: 'close-outline',
+    title: 'Nenhum anime cadastrado.'
+  };
 
   constructor(private router : Router, private firebaseService: FirebaseService, private AuthSerivce: AuthService) {
+    this.isLoading = true;
+    this.hasSearched = false;
     this.user = this.AuthSerivce.getUserLogged();
     this.firebaseService.buscarTodos(this.user.uid)
     .subscribe(res => {
@@ -22,9 +32,9 @@ export class HomePage {
           id: anime.payload.doc.id,
           ...anime.payload.doc.data() as any
         }as Anime;
-      })
-    })
-
+      });
+      this.isLoading = false;
+    });
   }
 
   irParaCadastrar(){
@@ -41,5 +51,25 @@ export class HomePage {
     .then((res)=>{
       this.router.navigate(["signin"]);
     })
+  }
+
+  async onSearchChange(event){
+    this.hasSearched = true;
+    this.query = event.detail.value.toLowerCase();
+    this.animes = [];
+    if(this.query.length > 0){
+      this.isLoading = true;
+      setTimeout(async()=>{
+        this.animes = await this.lista_animes.filter((element: any) => {
+          return element.short_name.includes(this.query);
+        })
+        console.log(this.animes);
+        this.isLoading = false;
+      }, 3000);
+    }
+  }
+
+  returnSearch(){
+    this.hasSearched = false;
   }
 }

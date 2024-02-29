@@ -3,24 +3,23 @@
     <ion-title>
       Minha Lista de Animes
     </ion-title>
+    <ion-toolbar *ngIf="!isLoading && lista_animes.length > 0">
+      <ion-searchbar animated debounce="800" #searchInput style="margin-top: 2%;" (ionChange)="onSearchChange($event)"></ion-searchbar>
+    </ion-toolbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="lista_animes.length === 0">
-    <p>Lista vazia</p>
-  </ng-container>
-  <ion-list *ngFor="let anime of lista_animes;">
-    <ion-item (click)="editar(anime)">
-      <ion-thumbnail slot="start" *ngIf="anime.downloadURL != null">
-        <img alt="Poster of {{anime.nome}}" src="{{anime.downloadURL}}" />
-      </ion-thumbnail>
-      <ion-thumbnail slot="start" *ngIf="anime.downloadURL == null">
-        <img alt="Poster not found" src="assets/notfound.jpg" />
-      </ion-thumbnail>
-      <ion-label>{{anime.nome}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <app-loading-animes *ngIf="isLoading"></app-loading-animes>
+  <ion-item-group *ngIf="!hasSearched">
+    <ng-container *ngIf="!isLoading && lista_animes.length == 0">
+      <app-empty-screen [model]="model"></app-empty-screen>
+    </ng-container>
+    <ion-list *ngFor="!isLoading && lista_animes.length > 0 let anime of lista_animes;">
+      <app-anime (click)="editar(anime)" [anime]="anime">
+      </app-anime>
+    </ion-list>
+  </ion-item-group>
 
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button (click)="irParaCadastrar()">
