@@ -8,56 +8,5 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formEntidade" (ngSubmit)="cadastrar()">
-    <!--Mensagens de Erro Nome-->
-    <span *ngIf="formEntidade.get('nome')?.touched && formEntidade.get('nome')?.errors?.['required']">Título é obrigatório</span><br>
-    <ion-item>
-      <ion-label position="floating">Título</ion-label>
-      <ion-input formControlName="nome" placeholder="Insira o nome do anime"></ion-input>
-    </ion-item>
-    <!--Mensagens de Erro Episódios-->
-    <span *ngIf="formEntidade.get('episodios')?.touched && formEntidade.get('episodios')?.errors?.['required']">A quantidade de episódios é obrigatório</span><br>
-    <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['pattern']">A quantidade de episódios deve ser numérico</span><br>
-    <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['min']">A quantidade de episódios deve ser positivo</span><br>
-    <ion-item>
-      <ion-label position="floating">Episódios</ion-label>
-      <ion-input formControlName="episodios" placeholder="Insira a quantidade de episódios do anime" type="number" min="1"></ion-input>
-    </ion-item>
-    <!--Mensagens de Erro Genero-->
-    <span *ngIf="formEntidade.get('genero')?.touched && formEntidade.get('genero')?.errors?.['required']">Deve conter pelo menos um genero</span><br>
-    <ion-item>
-      <ion-label position="floating">Genero</ion-label>
-      <ion-select formControlName="genero" placeholder="Seleciona o gênero do anime">
-        <ion-select-option value="0">Outro</ion-select-option>
-        <ion-select-option value="1">Shounen</ion-select-option>
-        <ion-select-option value="2">Romance</ion-select-option>
-        <ion-select-option value="3">Drama</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <!--Mensagens de Erro Temporada-->
-    <ion-item>
-      <ion-label position="floating">Temporada</ion-label>
-      <ion-select formControlName="temporada" placeholder="Insira a tempoorada do anime">
-        <ion-select-option value="0">Ano todo</ion-select-option>
-        <ion-select-option value="1">Verão</ion-select-option>
-        <ion-select-option value="2">Outono</ion-select-option>
-        <ion-select-option value="3">Inverno</ion-select-option>
-        <ion-select-option value="4">Primavera</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Estúdio</ion-label>
-      <ion-input formControlName="studio" placeholder="Insira o estúdio que produziu o anime"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Data</ion-label>
-      <ion-input formControlName="data" placeholder="Insira a data que lançou o anime" type="date"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-button size="default" color="success" shape="round">
-        <input type="file" (change)="cadastrarImagem($event.target)" />
-      </ion-button>
-    </ion-item>
-    <ion-button expand="block" type="submit">Enviar</ion-button>
-  </form>
+  <app-cadastro [editar]="isInEditarPage"></app-cadastro>
 </ion-content>

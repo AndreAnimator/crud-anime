@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button (click)="returnSearch()"></ion-back-button>
-    </ion-buttons>
     <ion-icon name="arrow-back-outline" *ngIf="hasSearched" (click)="returnSearch()"></ion-icon>
     <ion-title>
       Minha Lista de Animes
     </ion-title>
     <ion-item-group *ngIf="lista_animes.length > 0">
+      <ion-buttons>
+        <ion-back-button (click)="returnSearch()"></ion-back-button>
+      </ion-buttons>
       <ion-searchbar #mySearchbar animated debounce="800" #searchInput style="margin-top: 2%;" (ionChange)="onSearchChange($event)"></ion-searchbar>
     </ion-item-group>
   </ion-toolbar>
