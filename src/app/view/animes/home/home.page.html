@@ -1,11 +1,15 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="returnSearch()"></ion-back-button>
+    </ion-buttons>
+    <ion-icon name="arrow-back-outline" *ngIf="hasSearched" (click)="returnSearch()"></ion-icon>
     <ion-title>
       Minha Lista de Animes
     </ion-title>
-    <ion-toolbar *ngIf="!isLoading && lista_animes.length > 0">
-      <ion-searchbar animated debounce="800" #searchInput style="margin-top: 2%;" (ionChange)="onSearchChange($event)"></ion-searchbar>
-    </ion-toolbar>
+    <ion-item-group *ngIf="lista_animes.length > 0">
+      <ion-searchbar #mySearchbar animated debounce="800" #searchInput style="margin-top: 2%;" (ionChange)="onSearchChange($event)"></ion-searchbar>
+    </ion-item-group>
   </ion-toolbar>
 </ion-header>
 
@@ -16,6 +20,13 @@
       <app-empty-screen [model]="model"></app-empty-screen>
     </ng-container>
     <ion-list *ngFor="!isLoading && lista_animes.length > 0 let anime of lista_animes;">
+      <app-anime (click)="editar(anime)" [anime]="anime">
+      </app-anime>
+    </ion-list>
+  </ion-item-group>
+  <ion-item-group *ngIf="hasSearched">
+    <app-empty-screen *ngIf="!isLoading && (animes?.length == 0 || query?.length == 0)" [model]="emptySearchModel"></app-empty-screen>
+    <ion-list *ngFor="!isLoading && animes.length > 0 let anime of animes;">
       <app-anime (click)="editar(anime)" [anime]="anime">
       </app-anime>
     </ion-list>
