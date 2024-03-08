@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Logar</ion-title>
+    <ion-title color="tertiary">Logar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="formLogar" (ngSubmit)="submitForm()">
     <!--Mensagens de Erro Email-->
-    <span *ngIf="formLogar.get('email')?.touched && formLogar.get('email')?.errors?.['required']">Email é obrigatório</span><br>
-    <span *ngIf="formLogar.get('email')?.dirty && formLogar.get('email')?.errors?.['email']">Formato de email inválido</span>
+    <span *ngIf="formLogar.get('email')?.touched && formLogar.get('email')?.errors?.['required']" class="error">Email é obrigatório</span><br>
+    <span *ngIf="formLogar.get('email')?.dirty && formLogar.get('email')?.errors?.['email']" class="error">Formato de email inválido</span>
     <ion-item> 
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
@@ -18,16 +18,16 @@
       <ion-input type="password" formControlName="senha"></ion-input>
     </ion-item>
     <!--Mensagens de Erro Senha-->
-    <span *ngIf="formLogar.get('senha')?.touched && formLogar.get('senha')?.errors?.['required']">Senha é obrigatório</span><br>
-    <span *ngIf="formLogar.get('senha')?.dirty && formLogar.get('senha')?.errors?.['minlength']">Senha precisa de no mínimo 6 caracteres</span>
+    <span *ngIf="formLogar.get('senha')?.touched && formLogar.get('senha')?.errors?.['required']" class="error">Senha é obrigatório</span><br>
+    <span *ngIf="formLogar.get('senha')?.dirty && formLogar.get('senha')?.errors?.['minlength']" class="error">Senha precisa de no mínimo 6 caracteres</span>
     <ion-button expand="full" color="success" type="submit">Entrar</ion-button>
     <ion-button expand="full" color="danger" (click)="logarComGoogle()">Entrar com Google
       <ion-icon slot="end" name="logo-google"></ion-icon>
     </ion-button>
-    <ion-button expand="full" color="danger" (click)="logarComGithub()">Entrar com Github
+    <ion-button expand="full" color="dark" (click)="logarComGithub()">Entrar com Github
       <ion-icon slot="end" class="logo-github"></ion-icon>
     </ion-button>
-    <p>
+    <p class="centrado">
       Não tem cadastro? <a (click)="irParaSignUp()">Clique aqui!</a>
     </p>
   </form>

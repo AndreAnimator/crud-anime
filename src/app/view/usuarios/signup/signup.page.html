@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Cadastrar</ion-title>
+    <ion-title color="tertiary">Cadastrar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
     <!--Mensagens de Erro Email-->
-    <span *ngIf="formCadastrar.get('email')?.touched && formCadastrar.get('email')?.errors?.['required']">Email é obrigatório</span><br>
-    <span *ngIf="formCadastrar.get('email')?.dirty && formCadastrar.get('email')?.errors?.['email']">Formato de email inválido</span>
+    <span *ngIf="formCadastrar.get('email')?.touched && formCadastrar.get('email')?.errors?.['required']" class="error">Email é obrigatório</span><br>
+    <span *ngIf="formCadastrar.get('email')?.dirty && formCadastrar.get('email')?.errors?.['email']" class="error">Formato de email inválido</span>
     <ion-item>
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
@@ -17,17 +17,17 @@
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" formControlName="senha"></ion-input>
     </ion-item>
-    <span *ngIf="formCadastrar.get('senha')?.touched && formCadastrar.get('senha')?.errors?.['required']">Senha é obrigatório</span><br>
-    <span *ngIf="formCadastrar.get('confSenha')?.dirty && formCadastrar.get('senha')?.errors?.['minlength']">Senha precisa de no mínimo 6 caracteres</span>
+    <span *ngIf="formCadastrar.get('senha')?.touched && formCadastrar.get('senha')?.errors?.['required']" class="error">Senha é obrigatório</span><br>
+    <span *ngIf="formCadastrar.get('confSenha')?.dirty && formCadastrar.get('senha')?.errors?.['minlength']" class="error">Senha precisa de no mínimo 6 caracteres</span>
     <ion-item>
       <ion-label position="floating">Confirme a Senha</ion-label>
       <ion-input type="password" formControlName="confSenha"></ion-input>
     </ion-item>
     <!--Mensagens de Erro Senha-->
-    <span *ngIf="formCadastrar.get('confSenha')?.touched && formCadastrar.get('confSenha')?.errors?.['required']">A confirmação de senha é obrigatório</span><br>
-    <span *ngIf="formCadastrar.get('confSenha')?.dirty && formCadastrar.get('confSenha')?.errors?.['minlength']">A confirmação de senha precisa de no mínimo 6 caracteres</span>
+    <span *ngIf="formCadastrar.get('confSenha')?.touched && formCadastrar.get('confSenha')?.errors?.['required']" class="error">A confirmação de senha é obrigatório</span><br>
+    <span *ngIf="formCadastrar.get('confSenha')?.dirty && formCadastrar.get('confSenha')?.errors?.['minlength']" class="error">A confirmação de senha precisa de no mínimo 6 caracteres</span>
     <br>
-    <span *ngIf="formCadastrar.get('confSenha')?.dirty && this.formCadastrar.get('senha')?.value != this.formCadastrar.get('confSenha')?.value">A confirmação de senha precisam ser iguais</span>
+    <span *ngIf="formCadastrar.get('confSenha')?.dirty && this.formCadastrar.get('senha')?.value != this.formCadastrar.get('confSenha')?.value" class="error">A confirmação de senha precisam ser iguais</span>
     <ion-button expand="full" color="success" type="submit">Cadastrar</ion-button>
     <ion-button>
       Já tá cadastrado? <a (click)="irParaSignIn()">Clique aqui!</a>

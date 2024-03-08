@@ -3,21 +3,21 @@
 </ion-item>
 <form [formGroup]="formEntidade" (ngSubmit)="cadastrar()">
   <!--Mensagens de Erro Nome-->
-  <span *ngIf="formEntidade.get('nome')?.touched && formEntidade.get('nome')?.errors?.['required']">Título é obrigatório</span><br>
+  <span *ngIf="formEntidade.get('nome')?.touched && formEntidade.get('nome')?.errors?.['required']" class="error">Título é obrigatório</span><br>
   <ion-item [disabled]="edicao">
     <ion-label position="floating">Título</ion-label>
     <ion-input placeholder="Insira o nome do anime" formControlName="nome"></ion-input>
   </ion-item>
   <!--Mensagens de Erro Episódios-->
-  <span *ngIf="formEntidade.get('episodios')?.touched && formEntidade.get('episodios')?.errors?.['required']">A quantidade de episódios é obrigatório</span><br>
-  <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['pattern']">A quantidade de episódios deve ser numérico</span><br>
-  <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['min']">A quantidade de episódios deve ser positivo</span>
+  <span *ngIf="formEntidade.get('episodios')?.touched && formEntidade.get('episodios')?.errors?.['required']" class="error">A quantidade de episódios é obrigatório</span><br>
+  <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['pattern']" class="error">A quantidade de episódios deve ser numérico</span><br>
+  <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['min']" class="error">A quantidade de episódios deve ser positivo</span>
   <ion-item [disabled]="edicao">
     <ion-label position="floating">Episódios</ion-label>
     <ion-input placeholder="Insira a quantidade de episódios do anime" type="number" formControlName="episodios"></ion-input>
   </ion-item>
   <!--Mensagens de Erro Genero-->
-  <span *ngIf="formEntidade.get('genero')?.touched && formEntidade.get('genero')?.errors?.['required']">Deve conter pelo menos um genero</span><br>
+  <span *ngIf="formEntidade.get('genero')?.touched && formEntidade.get('genero')?.errors?.['required']" class="error">Deve conter pelo menos um genero</span><br>
   <ion-item [disabled]="edicao">
     <ion-label position="floating">Genero</ion-label>
     <ion-select placeholder="Seleciona o gênero do anime" formControlName="genero">
