@@ -8,5 +8,6 @@
 </ion-header>
 
 <ion-content>
-  <app-cadastro [editar]="isInEditarPage"></app-cadastro>
+  <app-cadastro [formEntidade]="formEntidade" [onSubmit]="cadastrar" [onImageChange]="cadastrarImagem" [editar]="isInEditarPage" [anime]="anime"></app-cadastro>
+  <ion-button expand="block" shape="round" color="danger" (click)="excluir()">Excluir</ion-button>
 </ion-content>

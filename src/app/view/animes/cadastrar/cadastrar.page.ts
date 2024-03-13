@@ -12,7 +12,7 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   templateUrl: './cadastrar.page.html',
   styleUrls: ['./cadastrar.page.scss'],
 })
-export class CadastroComponent  implements OnInit {
+export class CadastrarPage  implements OnInit {
   isInEditarPage : Boolean = false;
   anime!: Anime;
   nome!: string;
@@ -21,10 +21,15 @@ export class CadastroComponent  implements OnInit {
   temporada! : number;
   studio! : string;
   data! : number;
-  edicao: boolean = false;
   public imagem! : any;
   public user! : any;
   formEntidade : FormGroup;
+  model: any = {nome: '',
+  episodios: '',
+  genero: '',
+  temporada: '',
+  studio: '',
+  data: ''};
 
   constructor(private alertController: AlertController, private router : Router, private firebaseService : FirebaseService, private auth: AuthService, private formBuilder: FormBuilder, private utilService: UtilService) {
     this.isInEditarPage = false;
@@ -37,6 +42,12 @@ export class CadastroComponent  implements OnInit {
       studio: new FormControl,
       data: new FormControl
     })
+    this.model = {nome: '',
+    episodios: '',
+    genero: '',
+    temporada: '',
+    studio: '',
+    data: ''};
   }
 
   get errorControl(){
@@ -45,25 +56,6 @@ export class CadastroComponent  implements OnInit {
 
   ngOnInit() {
     this.isInEditarPage = false;
-    this.formEntidade = this.formBuilder.group({
-      nome: ['', [Validators.required]],
-      episodios: ['', [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+$')]],
-      genero: ['', [Validators.required]],
-      temporada: [''],
-      studio: [''],
-      data: ['']
-    })
-  }
-
-  habilitarEdicao(){
-    if(this.edicao)
-      this.edicao = false;
-    else
-      this.edicao = true;
-  }
-
-  excluir(){
-    this.utilService.presentConfirmAlert("Atenção!", "Realmente deseja excluir?");
   }
 
   cadastrarImagem(imagem: any){

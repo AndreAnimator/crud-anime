@@ -1,10 +1,7 @@
-<ion-item *ngIf="editar">
-  <ion-toggle (ionChange)="habilitarEdicao()">Habilitar Edição</ion-toggle>
-</ion-item>
 <form [formGroup]="formEntidade" (ngSubmit)="cadastrar()">
   <!--Mensagens de Erro Nome-->
   <span *ngIf="formEntidade.get('nome')?.touched && formEntidade.get('nome')?.errors?.['required']" class="error">Título é obrigatório</span><br>
-  <ion-item [disabled]="edicao">
+  <ion-item>
     <ion-label position="floating">Título</ion-label>
     <ion-input placeholder="Insira o nome do anime" formControlName="nome"></ion-input>
   </ion-item>
@@ -12,13 +9,13 @@
   <span *ngIf="formEntidade.get('episodios')?.touched && formEntidade.get('episodios')?.errors?.['required']" class="error">A quantidade de episódios é obrigatório</span><br>
   <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['pattern']" class="error">A quantidade de episódios deve ser numérico</span><br>
   <span *ngIf="formEntidade.get('episodios')?.dirty && formEntidade.get('episodios')?.errors?.['min']" class="error">A quantidade de episódios deve ser positivo</span>
-  <ion-item [disabled]="edicao">
+  <ion-item>
     <ion-label position="floating">Episódios</ion-label>
     <ion-input placeholder="Insira a quantidade de episódios do anime" type="number" formControlName="episodios"></ion-input>
   </ion-item>
   <!--Mensagens de Erro Genero-->
   <span *ngIf="formEntidade.get('genero')?.touched && formEntidade.get('genero')?.errors?.['required']" class="error">Deve conter pelo menos um genero</span><br>
-  <ion-item [disabled]="edicao">
+  <ion-item>
     <ion-label position="floating">Genero</ion-label>
     <ion-select placeholder="Seleciona o gênero do anime" formControlName="genero">
       <ion-select-option value="0">Outro</ion-select-option>
@@ -27,7 +24,7 @@
       <ion-select-option value="3">Drama</ion-select-option>
     </ion-select> 
   </ion-item>
-  <ion-item [disabled]="edicao">
+  <ion-item>
     <ion-label position="floating">Temporada</ion-label>
     <ion-select formControlName="temporada" placeholder="Insira a tempoorada do anime">
       <ion-select-option value="0">Ano todo</ion-select-option>
@@ -37,11 +34,11 @@
       <ion-select-option value="4">Primavera</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item [disabled]="edicao">
+  <ion-item>
     <ion-label position="floating">Estúdio</ion-label>
     <ion-input formControlName="studio" placeholder="Insira o estúdio que produziu o anime"></ion-input>
   </ion-item>
-  <ion-item [disabled]="edicao">
+  <ion-item>
     <ion-label position="floating">Data</ion-label>
     <ion-input formControlName="data" placeholder="Insira a data que lançou o anime" type="date"></ion-input>
   </ion-item>
@@ -49,10 +46,9 @@
     <img src="{{anime.downloadURL}}" />
   </ion-item>
   <ion-item>
-    <ion-button size="default" color="success" shape="round" [disabled]="edicao">
+    <ion-button size="default" color="success" shape="round">
       <input type="file" (change)="cadastrarImagem($event.target)" />
     </ion-button>
   </ion-item>
-  <ion-button expand="block" shape="round" type="submit" [disabled]="edicao">Salvar</ion-button>
+  <ion-button expand="block" shape="round" type="submit">Salvar</ion-button>
 </form>
-<ion-button *ngIf="editar" expand="block" shape="round" color="danger" (click)="excluir()" [disabled]="edicao">Excluir</ion-button>
