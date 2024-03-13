@@ -119,7 +119,7 @@ export class DetalharPage implements OnInit {
           console.error(error);
         });
       }
-      this.utilService.presentAlert("Sucesso", "Anime Cadastrado!");
+      this.utilService.presentAlert("Sucesso", "Anime Editado!");
       this.router.navigate(['/home']);
     }
   }
