@@ -22,9 +22,10 @@ export class CadastroComponent  implements OnInit {
   @Input() onImageChange: (event: any) => void
   @Input() editar: Boolean;
   @Input() anime: any;
+  public user! : any;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router : Router, private utilService: UtilService,  private firebaseService : FirebaseService) {
-    
+    this.user = this.auth.getUserLogged();
   }
 
   cadastrar() {
