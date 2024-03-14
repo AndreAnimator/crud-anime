@@ -22,18 +22,9 @@ export class CadastroComponent  implements OnInit {
   @Input() onImageChange: (event: any) => void
   @Input() editar: Boolean;
   @Input() anime: any;
-  public user! : any;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router : Router, private utilService: UtilService,  private firebaseService : FirebaseService) {
-    this.user = this.auth.getUserLogged();
-    this.formEntidade = new FormGroup({
-      nome: new FormControl(this.anime?.nome,Validators.required),
-      episodios: new FormControl(this.anime?.episodios, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
-      genero: new FormControl(this.anime?.genero, Validators.required),
-      temporada: new FormControl(this.anime?.temporada, Validators.required),
-      studio: new FormControl(this.anime?.studio),
-      data: new FormControl(this.anime?.data),
-    })
+    
   }
 
   cadastrar() {
